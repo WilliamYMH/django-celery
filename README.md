@@ -131,6 +131,7 @@ ExecStart=/home/william/project/django-celery/env_celery/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
           --bind unix:/run/gunicorn.sock \
+          django_celery.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
