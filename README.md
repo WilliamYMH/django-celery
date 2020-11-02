@@ -100,6 +100,8 @@ Now, we will open the [Service] section. We will specify the user and the group 
 
 Next, we will map the working directory and specify the command that will be used to start the service. In this case, we will have to specify the full path to the Gunicorn executable, which is installed in our virtual environment. We will bind the process to the Unix socket we created in the / run directory so that the process can communicate with Nginx. We log all the data to standard output so that the journald process can collect the Gunicorn logs. We can also specify any optional Gunicorn settings here. For example, we specify 3 worker processes in this case:
 
+#### note:
+The WorkingDirectory is the same where is manage.py.
 ```
 [Unit]
 Description=gunicorn daemon
@@ -196,6 +198,7 @@ sudo systemctl restart nginx
 ```
 Finally, we must open our firewall to normal traffic on port 80. As we no longer need access to the development server, we can remove the rule to also open port 8000:
 ```
-sudo ufw delete allow 8000
 sudo ufw allow 'Nginx Full'
 ```
+this guide was taken from:
+https://www.digitalocean.com/community/tutorials/como-configurar-django-con-postgres-nginx-y-gunicorn-en-ubuntu-18-04-es
