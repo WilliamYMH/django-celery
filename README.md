@@ -126,7 +126,7 @@ After=network.target
 [Service]
 User=william
 Group=www-data
-WorkingDirectory=/home/william/project/django-celery
+WorkingDirectory=/home/william/project/django-celery/django_celery
 ExecStart=/home/william/project/django-celery/env_celery/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
@@ -150,8 +150,52 @@ To test the socket triggering mechanism, we can send a connection to the socket 
 ```
 curl --unix-socket /run/gunicorn.sock localhost
 ```
+You should see the HTML output of your application in the terminal. This indicates that Gunicorn has started and was able to present its Django app.
+
 To restart the service of gunicorn if the file [/etc/systemd/systemd/system/gunicorn.service] has been changed, typing the following:
 ```
 sudo systemctl daemon-reload
 sudo systemctl restart gunicorn
+```
+
+## Configure Nginx for authorization pass to Gunicorn
+Begin by creating and opening a new server block in the Nginx sites-available directory:
+```
+sudo nano /etc/nginx/sites-available/myproject
+```
+copy and paste the following:
+```
+server {
+    listen 80;
+    server_name 127.0.0.1;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/william/project/django-celery/django_celery;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/run/gunicorn.sock;
+    }
+}
+```
+save and close the file.
+
+we enable the file by linking it to the sites-enabled directory:
+```
+sudo ln -s /etc/nginx/sites-available/myproject /etc/nginx/sites-enabled
+```
+Test your Nginx configuration to rule out syntax errors by typing the following:
+```
+sudo nginx -t
+```
+Restart nginx
+```
+sudo systemctl restart nginx
+```
+Finally, we must open our firewall to normal traffic on port 80. As we no longer need access to the development server, we can remove the rule to also open port 8000:
+```
+sudo ufw delete allow 8000
+sudo ufw allow 'Nginx Full'
 ```
