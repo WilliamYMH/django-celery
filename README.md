@@ -61,7 +61,7 @@ sudo systemctl enable nginx
 
 ### Check that gunicorn works
 ```
-gunicorn --bind 0.0.0.0:8000 myproject.wsgi
+gunicorn --bind 0.0.0.0:8000 django_celery.wsgi
 ```
 check localhost:8000
 
