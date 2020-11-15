@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -77,9 +77,9 @@ WSGI_APPLICATION = 'django_celery.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db_celery',
-        'USER': 'pythoner',
-        'PASSWORD': '0000',
+        'NAME': 'dbcelery',
+        'USER': 'usercelery',
+        'PASSWORD': '1234',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -123,8 +123,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-CELERY_BROKER_URL = 'URL_BROKER'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+CELERY_BROKER_URL = 'redis://h:pe6eae42948fd6ed795159f0bf62f3c205dbd823af65c891cae03775d84e3ad89@ec2-52-23-116-180.compute-1.amazonaws.com:11869'
 
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
@@ -132,7 +132,7 @@ CELERY_TASK_SERIALIZER = 'json'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'EMAIL_HOST'
-EMAIL_HOST_PASSWORD = 'EMAIL_HOST_PASSWORD'
+EMAIL_HOST_USER = 'motiek.10@gmail.com'
+EMAIL_HOST_PASSWORD = 'motiekw321'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
