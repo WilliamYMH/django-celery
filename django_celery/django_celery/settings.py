@@ -25,7 +25,7 @@ SECRET_KEY = '-pegf6&4q35y7_)r-!e7wl=k+$k+q^i5@lp$nukkq^3y_9#^d9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '104.214.103.108']
 
 
 # Application definition
@@ -78,9 +78,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'db_celery',
-        'USER': 'pythoner',
-        'PASSWORD': '0000',
-        'HOST': 'localhost',
+        'USER': 'owner_celery',
+        'PASSWORD': '0104089107',
+        'HOST': '158.101.3.119',
         'PORT': '5432',
     }
 }
@@ -124,7 +124,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-CELERY_BROKER_URL = 'URL_BROKER'
+CELERY_BROKER_URL = '18.207.207.101:6379'
 
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
@@ -132,7 +132,7 @@ CELERY_TASK_SERIALIZER = 'json'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'EMAIL_HOST'
-EMAIL_HOST_PASSWORD = 'EMAIL_HOST_PASSWORD'
+EMAIL_HOST_USER = 'motiek.10@gmail.com'
+EMAIL_HOST_PASSWORD = 'motiekw321'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
