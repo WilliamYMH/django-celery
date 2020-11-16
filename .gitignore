@@ -1,1 +1,4 @@
-env_celery/
+env_celery/*
+env_app/*
+__pycache__/*
+migrations/*
