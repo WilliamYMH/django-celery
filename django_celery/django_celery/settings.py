@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -25,7 +25,7 @@ SECRET_KEY = '-pegf6&4q35y7_)r-!e7wl=k+$k+q^i5@lp$nukkq^3y_9#^d9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '104.214.103.108']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '104.214.103.108', '181.56.129.122', '10.0.0.4', '0.0.0.0']
 
 
 # Application definition
@@ -124,7 +124,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
 CELERY_BROKER_URL = '18.207.207.101:6379'
+
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+#CELERY_BROKER_URL = 'redis://h
 
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
