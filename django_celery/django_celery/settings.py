@@ -124,7 +124,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-CELERY_BROKER_URL = 'redis://h:pe6eae42948fd6ed795159f0bf62f3c205dbd823af65c891cae03775d84e3ad89@ec2-52-23-116-180.compute-1.amazonaws.com:11869'
+CELERY_BROKER_URL = 'REDIS_URL'
 
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
@@ -132,7 +132,7 @@ CELERY_TASK_SERIALIZER = 'json'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'motiek.10@gmail.com'
-EMAIL_HOST_PASSWORD = 'motiekw321'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
