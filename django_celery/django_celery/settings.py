@@ -11,6 +11,14 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+from django.core.wsgi import get_wsgi_application
+
+import sys
+
+#sys.path.append('/var/www/html/django_celery')
+#os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_celery.settings")
+#application = get_wsgi_application()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,12 +33,13 @@ SECRET_KEY = '-pegf6&4q35y7_)r-!e7wl=k+$k+q^i5@lp$nukkq^3y_9#^d9'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '104.214.103.108']
+ALLOWED_HOSTS = ['35.232.201.141','127.0.0.1', 'localhost', '104.214.103.108']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +50,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -55,7 +65,9 @@ ROOT_URLCONF = 'django_celery.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,6 +135,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, 'static')
+# ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+MEDIA_URL = '/media/'  # imagenes
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # imagenes
 
 CELERY_BROKER_URL = '18.207.207.101:6379'
 
@@ -133,6 +154,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'motiek.10@gmail.com'
-EMAIL_HOST_PASSWORD = 'motiekw321'
+EMAIL_HOST_PASSWORD = '*/Motiekw654'
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
